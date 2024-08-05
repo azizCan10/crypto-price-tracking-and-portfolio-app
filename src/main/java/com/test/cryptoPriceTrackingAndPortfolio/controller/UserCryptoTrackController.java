@@ -1,8 +1,9 @@
 package com.test.cryptoPriceTrackingAndPortfolio.controller;
 
-import com.test.cryptoPriceTrackingAndPortfolio.model.UserCryptoTrack;
+import com.test.cryptoPriceTrackingAndPortfolio.dto.UserCryptoTrackDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.service.UserCryptoTrackService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class UserCryptoTrackController {
     private final UserCryptoTrackService userCryptoTrackService;
 
     @PostMapping
-    public ResponseEntity<UserCryptoTrack> create(@RequestBody UserCryptoTrack userCryptoTrack) {
-        return ResponseEntity.ok(userCryptoTrackService.create(userCryptoTrack));
+    public ResponseEntity<UserCryptoTrackDTO> create(@RequestBody UserCryptoTrackDTO userCryptoTrackDTO) {
+        return new ResponseEntity<>(userCryptoTrackService.create(userCryptoTrackDTO), HttpStatus.CREATED);
     }
 }

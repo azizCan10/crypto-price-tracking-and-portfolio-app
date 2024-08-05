@@ -1,8 +1,10 @@
 package com.test.cryptoPriceTrackingAndPortfolio.service;
 
+import com.test.cryptoPriceTrackingAndPortfolio.dto.UserCryptoTrackDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.model.UserCryptoTrack;
 import com.test.cryptoPriceTrackingAndPortfolio.repository.UserCryptoTrackRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -10,8 +12,9 @@ import org.springframework.stereotype.Service;
 public class UserCryptoTrackService {
 
     private final UserCryptoTrackRepository userCryptoTrackRepository;
+    private final ModelMapper modelMapper;
 
-    public UserCryptoTrack create(UserCryptoTrack userCryptoTrack) {
-        return userCryptoTrackRepository.save(userCryptoTrack);
+    public UserCryptoTrackDTO create(UserCryptoTrackDTO userCryptoTrackDTO) {
+        return modelMapper.map(userCryptoTrackRepository.save(modelMapper.map(userCryptoTrackDTO, UserCryptoTrack.class)), UserCryptoTrackDTO.class);
     }
 }

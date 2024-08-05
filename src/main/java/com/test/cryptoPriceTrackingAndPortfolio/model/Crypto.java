@@ -3,6 +3,7 @@ package com.test.cryptoPriceTrackingAndPortfolio.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -22,5 +23,5 @@ public class Crypto {
     private Set<UserCryptoTrack> userCryptoTracks;
 
     @OneToMany(mappedBy = "userCryptoPurchaseCrypto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<UserCryptoPurchase> userCryptoPurchases;
+    private List<UserCryptoPurchase> userCryptoPurchases;
 }
