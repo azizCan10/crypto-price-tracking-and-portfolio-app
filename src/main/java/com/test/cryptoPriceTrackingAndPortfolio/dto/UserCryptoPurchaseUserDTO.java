@@ -1,6 +1,5 @@
 package com.test.cryptoPriceTrackingAndPortfolio.dto;
 
-import com.test.cryptoPriceTrackingAndPortfolio.enums.BuySell;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,5 +11,5 @@ public class UserCryptoPurchaseUserDTO {
     private CryptoDTO userCryptoPurchaseCrypto;
     private BigDecimal price;
     private BigDecimal amount;
-    private BuySell buyOrSell;
+    private BigDecimal total;
 }

@@ -19,6 +19,6 @@ public class UserResponseDTO {
     @JsonProperty("tracking")
     private Set<CryptoDTO> userCryptoTracks;
 
-    @JsonProperty("purchased")
+    @JsonProperty("portfolio")
     private List<UserCryptoPurchaseUserDTO> userCryptoPurchases;
 }

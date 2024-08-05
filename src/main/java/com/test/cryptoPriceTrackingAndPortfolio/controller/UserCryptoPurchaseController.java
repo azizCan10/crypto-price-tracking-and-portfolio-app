@@ -1,5 +1,6 @@
 package com.test.cryptoPriceTrackingAndPortfolio.controller;
 
+import com.test.cryptoPriceTrackingAndPortfolio.dto.CreateUserCryptoPurchaseDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.UserCryptoPurchaseDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.service.UserCryptoPurchaseService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,14 @@ public class UserCryptoPurchaseController {
     private final UserCryptoPurchaseService userCryptoPurchaseService;
 
     @PostMapping
-    public ResponseEntity<UserCryptoPurchaseDTO> create(@RequestBody UserCryptoPurchaseDTO userCryptoPurchaseDTO) {
-        return new ResponseEntity<>(userCryptoPurchaseService.create(userCryptoPurchaseDTO), HttpStatus.CREATED);
+    public ResponseEntity<UserCryptoPurchaseDTO> create(@RequestBody CreateUserCryptoPurchaseDTO createUserCryptoPurchaseDTO) {
+        return new ResponseEntity<>(userCryptoPurchaseService.create(createUserCryptoPurchaseDTO), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> delete(@RequestParam(required = true) Long userId,
+                                       @RequestParam(required = true) Long cryptoId) {
+        userCryptoPurchaseService.delete(userId, cryptoId);
+        return ResponseEntity.ok().build();
     }
 }
