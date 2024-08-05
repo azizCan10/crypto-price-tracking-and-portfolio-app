@@ -11,7 +11,6 @@ public class UserCryptoTrackService {
 
     private final UserCryptoTrackRepository userCryptoTrackRepository;
 
-
     public UserCryptoTrack create(UserCryptoTrack userCryptoTrack) {
         return userCryptoTrackRepository.save(userCryptoTrack);
     }

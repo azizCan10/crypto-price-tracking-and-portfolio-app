@@ -1,6 +1,5 @@
 package com.test.cryptoPriceTrackingAndPortfolio.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +18,9 @@ public class Crypto {
 
     private String symbol;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "crypto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UserCryptoTrack> userCryptoTracks;
+
+    @OneToMany(mappedBy = "userCryptoPurchaseCrypto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UserCryptoPurchase> userCryptoPurchases;
 }
