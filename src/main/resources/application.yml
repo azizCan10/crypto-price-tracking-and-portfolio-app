@@ -1,0 +1,17 @@
+#db config
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+      javax:
+        persistence:
+          validation:
+            mode: none
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/crypto-price-tracking
+    username: <YOUR_USERNAME>
+    password: <YOUR_PASSWORD>
