@@ -7,8 +7,8 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class UserCryptoPurchaseUserDTO {
-    private CryptoDTO userCryptoPurchaseCrypto;
+public class PortfolioUserDTO {
+    private CryptoDTO portfolioCrypto;
     private BigDecimal price;
     private BigDecimal amount;
     private BigDecimal total;

@@ -1,16 +1,16 @@
 package com.test.cryptoPriceTrackingAndPortfolio.repository;
 
-import com.test.cryptoPriceTrackingAndPortfolio.model.UserCryptoOperationHistory;
+import com.test.cryptoPriceTrackingAndPortfolio.model.OperationHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-public interface UserCryptoOperationHistoryRepository extends JpaRepository<UserCryptoOperationHistory, Long> {
+public interface OperationHistoryRepository extends JpaRepository<OperationHistory, Long> {
     @Modifying
     @Query(
             """
-            DELETE FROM UserCryptoOperationHistory u
-            WHERE u.userCryptoPurchaseUser.id = :userId AND u.userCryptoPurchaseCrypto.id = :cryptoId
+            DELETE FROM OperationHistory o
+            WHERE o.operationHistoryUser.id = :userId AND o.operationHistoryCrypto.id = :cryptoId
             """
     )
     void deleteByUserIdAndCryptoId(Long userId, Long cryptoId);

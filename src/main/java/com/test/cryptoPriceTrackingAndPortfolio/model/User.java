@@ -27,6 +27,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UserCryptoTrack> userCryptoTracks;
 
-    @OneToMany(mappedBy = "userCryptoPurchaseUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<UserCryptoPurchase> userCryptoPurchases;
+    @OneToMany(mappedBy = "portfolioUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Portfolio> portfolios;
+
+    @OneToMany(mappedBy = "operationHistoryUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OperationHistory> operationHistories;
 }

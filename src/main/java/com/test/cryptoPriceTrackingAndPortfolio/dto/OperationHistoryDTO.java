@@ -2,8 +2,6 @@ package com.test.cryptoPriceTrackingAndPortfolio.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.test.cryptoPriceTrackingAndPortfolio.enums.BuySell;
-import com.test.cryptoPriceTrackingAndPortfolio.model.Crypto;
-import com.test.cryptoPriceTrackingAndPortfolio.model.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,14 +9,14 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class UserCryptoOperationHistoryDTO {
+public class OperationHistoryDTO {
     private Long id;
 
     @JsonProperty("user")
-    private User userCryptoPurchaseUser;
+    private IdDTO operationHistoryUser;
 
     @JsonProperty("crypto")
-    private Crypto userCryptoPurchaseCrypto;
+    private IdDTO operationHistoryCrypto;
 
     private BigDecimal price;
     private BigDecimal amount;
