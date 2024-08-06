@@ -1,5 +1,6 @@
 package com.test.cryptoPriceTrackingAndPortfolio.security;
 
+import com.test.cryptoPriceTrackingAndPortfolio.dto.UserDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.service.JwtService;
 import com.test.cryptoPriceTrackingAndPortfolio.service.UserService;
 import jakarta.servlet.FilterChain;
@@ -9,7 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -37,7 +37,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails user = userService.loadUserByUsername(username);
+            UserDTO user = userService.loadUserByUsername(username);
 
             if (jwtService.validateToken(token, user)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());

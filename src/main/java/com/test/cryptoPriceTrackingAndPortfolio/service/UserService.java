@@ -1,13 +1,13 @@
 package com.test.cryptoPriceTrackingAndPortfolio.service;
 
 import com.test.cryptoPriceTrackingAndPortfolio.dto.CreateUserRequest;
+import com.test.cryptoPriceTrackingAndPortfolio.dto.UserDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.UserResponseDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.model.User;
 import com.test.cryptoPriceTrackingAndPortfolio.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,9 +41,11 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username)
+    public UserDTO loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("user"));
+
+        return modelMapper.map(user, UserDTO.class);
     }
 
     public List<UserResponseDTO> getAllUsers() {
