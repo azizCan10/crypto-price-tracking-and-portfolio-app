@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class CreatePortfolioDTO {
+public class CreatePortfolioRequest {
     private Long id;
 
     @JsonProperty("user")

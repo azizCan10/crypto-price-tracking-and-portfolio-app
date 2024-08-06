@@ -27,7 +27,7 @@ public class CryptoPriceTrackingAndPortfolioApplication {
             }
         });
 
-        modelMapper.addMappings(new PropertyMap<CreatePortfolioDTO, OperationHistoryDTO>() {
+        modelMapper.addMappings(new PropertyMap<CreatePortfolioRequest, OperationHistoryDTO>() {
             @Override
             protected void configure() {
                 map().setOperationHistoryUser(source.getPortfolioUser());

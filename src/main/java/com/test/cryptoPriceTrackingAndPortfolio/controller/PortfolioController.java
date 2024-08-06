@@ -1,6 +1,6 @@
 package com.test.cryptoPriceTrackingAndPortfolio.controller;
 
-import com.test.cryptoPriceTrackingAndPortfolio.dto.CreatePortfolioDTO;
+import com.test.cryptoPriceTrackingAndPortfolio.dto.CreatePortfolioRequest;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.PortfolioDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.service.PortfolioService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +16,8 @@ public class PortfolioController {
     private final PortfolioService portfolioService;
 
     @PostMapping
-    public ResponseEntity<PortfolioDTO> addOperation(@RequestBody CreatePortfolioDTO createPortfolioDTO) {
-        return new ResponseEntity<>(portfolioService.addOperation(createPortfolioDTO), HttpStatus.CREATED);
+    public ResponseEntity<PortfolioDTO> addOperation(@RequestBody CreatePortfolioRequest createPortfolioRequest) {
+        return new ResponseEntity<>(portfolioService.addOperation(createPortfolioRequest), HttpStatus.CREATED);
     }
 
     @DeleteMapping
