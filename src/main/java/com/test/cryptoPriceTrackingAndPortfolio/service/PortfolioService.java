@@ -21,9 +21,11 @@ public class PortfolioService {
 
     private final PortfolioRepository portfolioRepository;
     private final OperationHistoryService operationHistoryService;
+    private final CryptoService cryptoService;
     private final ModelMapper modelMapper;
 
     public PortfolioDTO addOperation(CreatePortfolioRequest createPortfolioRequest) {
+        createPortfolioRequest.setPortfolioCrypto(cryptoService.createOrGetCryptoIfExists(createPortfolioRequest.getPortfolioCrypto()));
         PortfolioDTO result = null;
         Portfolio entity = null;
         Optional<Portfolio> optionalEntity = portfolioRepository.findByUserAndCrypto(createPortfolioRequest.getPortfolioUser().getId(), createPortfolioRequest.getPortfolioCrypto().getId());

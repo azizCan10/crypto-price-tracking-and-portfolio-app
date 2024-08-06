@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class UserCryptoTrackDTO {
     private Long id;
     private IdDTO user;
-    private IdDTO crypto;
+    private CryptoDTO crypto;
 }

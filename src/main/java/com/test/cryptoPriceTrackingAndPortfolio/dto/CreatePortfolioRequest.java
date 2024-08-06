@@ -16,7 +16,7 @@ public class CreatePortfolioRequest {
     private IdDTO portfolioUser;
 
     @JsonProperty("crypto")
-    private IdDTO portfolioCrypto;
+    private CryptoDTO portfolioCrypto;
 
     private BigDecimal price;
     private BigDecimal amount;

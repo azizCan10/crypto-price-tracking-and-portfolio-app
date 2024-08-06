@@ -16,7 +16,7 @@ public class OperationHistoryDTO {
     private IdDTO operationHistoryUser;
 
     @JsonProperty("crypto")
-    private IdDTO operationHistoryCrypto;
+    private CryptoDTO operationHistoryCrypto;
 
     private BigDecimal price;
     private BigDecimal amount;

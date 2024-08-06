@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -20,10 +20,12 @@ public class CryptoService {
         return modelMapper.map(cryptoRepository.save(modelMapper.map(cryptoDTO, Crypto.class)), CryptoDTO.class);
     }
 
-    public List<CryptoDTO> getAllCryptos() {
-        return cryptoRepository.findAll()
-                .stream()
-                .map(entity -> modelMapper.map(entity, CryptoDTO.class))
-                .toList();
+    public CryptoDTO createOrGetCryptoIfExists(CryptoDTO cryptoDTO) {
+        Optional<Crypto> entityOptional = cryptoRepository.getCryptoBySymbol(cryptoDTO.getSymbol());
+
+        if (entityOptional.isPresent())
+            return modelMapper.map(entityOptional.get(), CryptoDTO.class);
+
+        return createCrypto(cryptoDTO);
     }
 }

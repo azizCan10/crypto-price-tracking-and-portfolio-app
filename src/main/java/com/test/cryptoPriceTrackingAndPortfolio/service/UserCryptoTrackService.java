@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 public class UserCryptoTrackService {
 
     private final UserCryptoTrackRepository userCryptoTrackRepository;
+    private final CryptoService cryptoService;
     private final ModelMapper modelMapper;
 
     public UserCryptoTrackDTO create(UserCryptoTrackDTO userCryptoTrackDTO) {
+        userCryptoTrackDTO.setCrypto(cryptoService.createOrGetCryptoIfExists(userCryptoTrackDTO.getCrypto()));
         return modelMapper.map(userCryptoTrackRepository.save(modelMapper.map(userCryptoTrackDTO, UserCryptoTrack.class)), UserCryptoTrackDTO.class);
     }
 }
