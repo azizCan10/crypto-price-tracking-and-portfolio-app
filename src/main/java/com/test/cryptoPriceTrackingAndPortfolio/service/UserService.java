@@ -40,6 +40,12 @@ public class UserService implements UserDetailsService {
         return modelMapper.map(userRepository.save(entity), UserResponseDTO.class);
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("user"));
+    }
+
     public List<UserResponseDTO> getAllUsers() {
         return userRepository.findAll()
                 .stream()
@@ -47,9 +53,17 @@ public class UserService implements UserDetailsService {
                 .toList();
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username)
+    public UserResponseDTO getUserById(Long id) {
+        return userRepository.findById(id)
+                .map(entity -> modelMapper.map(entity, UserResponseDTO.class))
                 .orElseThrow(() -> new EntityNotFoundException("user"));
+    }
+
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    public void deleteAllUsers() {
+        userRepository.deleteAll();
     }
 }
