@@ -1,7 +1,10 @@
 package com.test.cryptoPriceTrackingAndPortfolio.dto;
 
+import com.test.cryptoPriceTrackingAndPortfolio.enums.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -11,4 +14,5 @@ public class CreateUserRequest {
     private String username;
     private String email;
     private String password;
+    private Set<Role> authorities;
 }

@@ -1,6 +1,7 @@
 package com.test.cryptoPriceTrackingAndPortfolio.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.test.cryptoPriceTrackingAndPortfolio.enums.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ public class UserResponseDTO {
     private String surname;
     private String username;
     private String email;
+    private Set<Role> authorities;
 
     @JsonProperty("tracking")
     private Set<CryptoDTO> userCryptoTracks;

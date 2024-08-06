@@ -15,3 +15,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/crypto-price-tracking
     username: <YOUR_USERNAME>
     password: <YOUR_PASSWORD>
+
+#jwt config
+jwt-key: <YOUR_KEY>
+expire-time: 3 #hour
