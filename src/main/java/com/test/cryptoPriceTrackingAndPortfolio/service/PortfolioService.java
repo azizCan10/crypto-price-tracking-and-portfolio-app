@@ -49,11 +49,14 @@ public class PortfolioService {
                     operationHistoryService.deleteByUserIdAndCryptoId(entity.getPortfolioUser().getId(), entity.getPortfolioCrypto().getId());
                     delete(entity.getPortfolioUser().getId(), entity.getPortfolioCrypto().getId());
 
-                    throw new EntityNotFoundException("There is no " + entity.getPortfolioCrypto().getSymbol() + " in portfolio");
+                    throw new EntityNotFoundException("crypto with symbol: " + entity.getPortfolioCrypto().getSymbol());
                 }
 
                 entity.setTotal(entity.getTotal().subtract(createPortfolioRequest.getAmount().multiply(createPortfolioRequest.getPrice())));
                 entity.setPrice(entity.getTotal().divide(entity.getAmount(), 2, RoundingMode.HALF_UP));
+            }
+            else {
+                throw new EntityNotFoundException("crypto with symbol: " + createPortfolioRequest.getPortfolioCrypto().getSymbol());
             }
         }
 
@@ -66,7 +69,7 @@ public class PortfolioService {
     @Transactional
     public void delete(Long userId, Long cryptoId) {
         Portfolio optionalEntity = portfolioRepository.findByUserAndCrypto(userId, cryptoId)
-                .orElseThrow(() -> new EntityNotFoundException("Data not found"));
+                .orElseThrow(() -> new EntityNotFoundException("portfolio with userId: " + userId));
 
         portfolioRepository.delete(optionalEntity);
     }

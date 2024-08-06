@@ -31,7 +31,7 @@ public class AuthController {
             return ResponseEntity.ok(jwtService.generateToken(authRequest.getUsername()));
         }
 
-        throw new UsernameNotFoundException("Username not found: " + authRequest.getUsername());
+        throw new UsernameNotFoundException("username with: " + authRequest.getUsername());
     }
 
     @PostMapping
