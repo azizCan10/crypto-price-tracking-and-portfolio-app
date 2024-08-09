@@ -1,7 +1,6 @@
 package com.test.cryptoPriceTrackingAndPortfolio.security;
 
 import com.test.cryptoPriceTrackingAndPortfolio.dto.UserDTO;
-import com.test.cryptoPriceTrackingAndPortfolio.service.JwtService;
 import com.test.cryptoPriceTrackingAndPortfolio.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

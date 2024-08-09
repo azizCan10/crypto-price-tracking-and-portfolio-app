@@ -1,4 +1,4 @@
-package com.test.cryptoPriceTrackingAndPortfolio.service;
+package com.test.cryptoPriceTrackingAndPortfolio.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

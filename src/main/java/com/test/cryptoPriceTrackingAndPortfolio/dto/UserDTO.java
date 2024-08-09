@@ -3,12 +3,14 @@ package com.test.cryptoPriceTrackingAndPortfolio.dto;
 import com.test.cryptoPriceTrackingAndPortfolio.enums.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
+@ToString(of = {"id", "username"})
 public class UserDTO implements UserDetails {
     private Long id;
     private String name;

@@ -3,7 +3,7 @@ package com.test.cryptoPriceTrackingAndPortfolio.controller;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.AuthRequest;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.CreateUserRequest;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.UserResponseDTO;
-import com.test.cryptoPriceTrackingAndPortfolio.service.JwtService;
+import com.test.cryptoPriceTrackingAndPortfolio.security.JwtService;
 import com.test.cryptoPriceTrackingAndPortfolio.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
