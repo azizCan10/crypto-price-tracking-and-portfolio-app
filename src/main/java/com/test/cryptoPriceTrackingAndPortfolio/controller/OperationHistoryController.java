@@ -1,6 +1,8 @@
 package com.test.cryptoPriceTrackingAndPortfolio.controller;
 
+import com.test.cryptoPriceTrackingAndPortfolio.annotation.LoggedUser;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.OperationHistoryDTO;
+import com.test.cryptoPriceTrackingAndPortfolio.dto.UserDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.service.OperationHistoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,7 @@ public class OperationHistoryController {
     private final OperationHistoryService operationHistoryService;
 
     @GetMapping
-    public ResponseEntity<List<OperationHistoryDTO>> getAll() {
+    public ResponseEntity<List<OperationHistoryDTO>> getAll(@LoggedUser UserDTO user) {
         return ResponseEntity.ok(operationHistoryService.getAll());
     }
 }
