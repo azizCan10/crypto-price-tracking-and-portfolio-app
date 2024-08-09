@@ -15,30 +15,31 @@ public class UserDTO implements UserDetails {
     private String surname;
     private String username;
     private String email;
+    private String password;
     private Set<Role> authorities;
 
     @Override
     public String getPassword() {
-        return "";
+        return this.password;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
