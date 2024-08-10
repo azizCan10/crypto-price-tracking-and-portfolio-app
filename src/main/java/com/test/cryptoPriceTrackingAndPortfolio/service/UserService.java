@@ -4,6 +4,7 @@ import com.test.cryptoPriceTrackingAndPortfolio.dto.CreateUserRequest;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.UpdateUserRequest;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.UserDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.UserResponseDTO;
+import com.test.cryptoPriceTrackingAndPortfolio.enums.Role;
 import com.test.cryptoPriceTrackingAndPortfolio.model.User;
 import com.test.cryptoPriceTrackingAndPortfolio.repository.UserRepository;
 import com.test.cryptoPriceTrackingAndPortfolio.utils.ModelMapperUtils;
@@ -76,6 +77,6 @@ public class UserService implements UserDetailsService {
     }
 
     public void deleteAllUsers() {
-        userRepository.deleteAll();
+        userRepository.deleteAll(userRepository.findByAuthorities(Role.ROLE_USER));
     }
 }
