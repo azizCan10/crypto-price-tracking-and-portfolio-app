@@ -1,6 +1,7 @@
 package com.test.cryptoPriceTrackingAndPortfolio.controller;
 
 import com.test.cryptoPriceTrackingAndPortfolio.annotation.LoggedUser;
+import com.test.cryptoPriceTrackingAndPortfolio.dto.UpdateUserRequest;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.UserDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.UserResponseDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.service.UserService;
@@ -25,6 +26,11 @@ public class AdminController {
     @GetMapping("/user/{id}")
     public ResponseEntity<UserResponseDTO> getUserById(@LoggedUser UserDTO user, @PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    @PutMapping("/user")
+    public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
+        return ResponseEntity.ok(userService.updateUser(updateUserRequest));
     }
 
     @DeleteMapping("/user/{id}")
