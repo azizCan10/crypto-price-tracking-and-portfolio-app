@@ -17,8 +17,8 @@ public class OperationHistoryService {
     private final OperationHistoryRepository operationHistoryRepository;
     private final ModelMapper modelMapper;
 
-    public List<OperationHistoryDTO> getAll() {
-        return operationHistoryRepository.findAll()
+    public List<OperationHistoryDTO> getAllByUserId(Long id) {
+        return operationHistoryRepository.findAllByOperationHistoryUser_Id(id)
                 .stream()
                 .map(entity -> modelMapper.map(entity, OperationHistoryDTO.class))
                 .toList();

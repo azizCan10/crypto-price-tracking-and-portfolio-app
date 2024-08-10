@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface OperationHistoryRepository extends JpaRepository<OperationHistory, Long> {
     @Modifying
     @Query(
@@ -14,4 +16,6 @@ public interface OperationHistoryRepository extends JpaRepository<OperationHisto
             """
     )
     void deleteByUserIdAndCryptoId(Long userId, Long cryptoId);
+
+    List<OperationHistory> findAllByOperationHistoryUser_Id(Long userId);
 }

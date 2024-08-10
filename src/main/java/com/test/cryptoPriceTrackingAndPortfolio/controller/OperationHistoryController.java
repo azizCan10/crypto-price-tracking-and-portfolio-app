@@ -20,7 +20,7 @@ public class OperationHistoryController {
     private final OperationHistoryService operationHistoryService;
 
     @GetMapping
-    public ResponseEntity<List<OperationHistoryDTO>> getAll(@LoggedUser UserDTO user) {
-        return ResponseEntity.ok(operationHistoryService.getAll());
+    public ResponseEntity<List<OperationHistoryDTO>> getAllByUserId(@LoggedUser UserDTO user) {
+        return ResponseEntity.ok(operationHistoryService.getAllByUserId(user.getId()));
     }
 }
