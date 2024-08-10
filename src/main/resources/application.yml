@@ -16,6 +16,20 @@ spring:
     username: <YOUR_USERNAME>
     password: <YOUR_PASSWORD>
 
+#mail config
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: <YOUR_USERNAME>
+    password: <YOUR_PASSWORD>
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 #jwt config
 jwt-key: <YOUR_KEY>
 expire-time: 3 #hour

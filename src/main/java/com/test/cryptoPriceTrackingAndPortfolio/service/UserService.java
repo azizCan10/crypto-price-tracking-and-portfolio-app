@@ -23,6 +23,7 @@ import java.util.List;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final MailService mailService;
     private final BCryptPasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
 
@@ -39,7 +40,10 @@ public class UserService implements UserDetailsService {
                 .accountNonLocked(true)
                 .build();
 
-        return modelMapper.map(userRepository.save(entity), UserResponseDTO.class);
+        UserResponseDTO result = modelMapper.map(userRepository.save(entity), UserResponseDTO.class);
+        mailService.sendWelcomeMail(result.getEmail());
+
+        return result;
     }
 
     @Override

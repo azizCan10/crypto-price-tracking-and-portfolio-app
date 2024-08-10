@@ -36,4 +36,9 @@ public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
     public ResponseEntity<String> handle(EntityNotFoundException e) {
         return new ResponseEntity<>(e.getMessage() + " not found", HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(MailSendException.class)
+    public ResponseEntity<String> handle(MailSendException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }
