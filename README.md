@@ -60,7 +60,7 @@ To get started with this project, you will need to have the following installed 
 To build and run the project, follow these steps:
 
 * Clone the repository: `https://github.com/azizCan10/crypto-price-tracking-and-portfolio-app.git`
-* FE repository: [https://github.com/azizCan10/crypto-price-tracking-and-portfolio-app-fe](https://github.com/azizCan10/crypto-price-tracking-and-portfolio-app-fe)
+* FE repository: [crypto-price-tracking-and-portfolio-app-fe](https://github.com/azizCan10/crypto-price-tracking-and-portfolio-app-fe)
 * Navigate to the project directory
 * Open a db in PostgreSQL called crypto-price-tracking
 * in application.yml file, set your own values
