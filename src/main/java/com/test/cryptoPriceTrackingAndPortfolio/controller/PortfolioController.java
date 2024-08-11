@@ -21,12 +21,4 @@ public class PortfolioController {
     public ResponseEntity<PortfolioDTO> addOperation(@LoggedUser UserDTO user, @RequestBody CreatePortfolioRequest createPortfolioRequest) {
         return new ResponseEntity<>(portfolioService.addOperation(createPortfolioRequest), HttpStatus.CREATED);
     }
-
-    @DeleteMapping
-    public ResponseEntity<Void> delete(@LoggedUser UserDTO user,
-                                       @RequestParam Long userId,
-                                       @RequestParam Long cryptoId) {
-        portfolioService.delete(userId, cryptoId);
-        return ResponseEntity.ok().build();
-    }
 }
