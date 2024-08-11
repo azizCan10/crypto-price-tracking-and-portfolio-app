@@ -23,8 +23,8 @@ public class AuthController {
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
 
-    @PostMapping("/generate-token")
-    public ResponseEntity<?> generateToken(@RequestBody AuthRequest authRequest) {
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
 
         if (authentication.isAuthenticated()) {
@@ -34,8 +34,8 @@ public class AuthController {
         throw new UsernameNotFoundException("username with: " + authRequest.getUsername());
     }
 
-    @PostMapping
-    public ResponseEntity<UserResponseDTO> createUser(@RequestBody CreateUserRequest createUserRequest) {
+    @PostMapping("/register")
+    public ResponseEntity<UserResponseDTO> register(@RequestBody CreateUserRequest createUserRequest) {
         return new ResponseEntity<>(userService.createUser(createUserRequest), HttpStatus.CREATED);
     }
 }
