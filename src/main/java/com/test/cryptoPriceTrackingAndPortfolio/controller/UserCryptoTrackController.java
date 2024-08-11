@@ -7,10 +7,7 @@ import com.test.cryptoPriceTrackingAndPortfolio.service.UserCryptoTrackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,6 +18,12 @@ public class UserCryptoTrackController {
 
     @PostMapping
     public ResponseEntity<UserCryptoTrackDTO> create(@LoggedUser UserDTO user, @RequestBody UserCryptoTrackDTO userCryptoTrackDTO) {
-        return new ResponseEntity<>(userCryptoTrackService.create(userCryptoTrackDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(userCryptoTrackService.create(user, userCryptoTrackDTO), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{cryptoId}")
+    public ResponseEntity<Void> deleteByCryptoId(@LoggedUser UserDTO user, @PathVariable Long cryptoId) {
+        userCryptoTrackService.deleteByCryptoId(user, cryptoId);
+        return ResponseEntity.ok().build();
     }
 }
