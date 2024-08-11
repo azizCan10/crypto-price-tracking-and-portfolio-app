@@ -1,6 +1,7 @@
 package com.test.cryptoPriceTrackingAndPortfolio.controller;
 
 import com.test.cryptoPriceTrackingAndPortfolio.annotation.LoggedUser;
+import com.test.cryptoPriceTrackingAndPortfolio.dto.UpdateUserRequest;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.UserDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.dto.UserResponseDTO;
 import com.test.cryptoPriceTrackingAndPortfolio.service.UserService;
@@ -18,5 +19,10 @@ public class UserController {
     @GetMapping("/me")
     public ResponseEntity<UserResponseDTO> me(@LoggedUser UserDTO user) {
         return ResponseEntity.ok(userService.getUserById(user.getId()));
+    }
+
+    @PutMapping
+    public ResponseEntity<UserResponseDTO> updateUser(@LoggedUser UserDTO user, @RequestBody UpdateUserRequest updateUserRequest) {
+        return ResponseEntity.ok(userService.updateUser(updateUserRequest));
     }
 }

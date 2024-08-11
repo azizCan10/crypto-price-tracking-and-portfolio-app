@@ -71,6 +71,10 @@ public class UserService implements UserDetailsService {
         User entity = userRepository.findById(updateUserRequest.getId())
                 .orElseThrow(() -> new EntityNotFoundException("user"));
 
+        if (updateUserRequest.getPassword() != null) {
+            updateUserRequest.setPassword(passwordEncoder.encode(updateUserRequest.getPassword()));
+        }
+
         ModelMapperUtils.copyNonNullFields(updateUserRequest, entity);
 
         return modelMapper.map(userRepository.save(entity), UserResponseDTO.class);
