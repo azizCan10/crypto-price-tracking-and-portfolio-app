@@ -8,6 +8,11 @@ import java.util.List;
 @Service
 public class RoleService {
 
+    /**
+     * This method gets all roles data
+     *
+     * @return role list
+     */
     public List<Role> getAllRoles() {
         return List.of(Role.values());
     }

@@ -17,6 +17,11 @@ public class MailService {
     @Value("${spring.mail.username}")
     private String from;
 
+    /**
+     * This method sends welcome mail
+     *
+     * @param to person to send e-mail to
+     */
     @Async
     public void sendWelcomeMail(String to) {
         try {

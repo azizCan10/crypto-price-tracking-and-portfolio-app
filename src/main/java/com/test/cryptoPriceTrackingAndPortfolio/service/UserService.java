@@ -27,6 +27,12 @@ public class UserService implements UserDetailsService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
 
+    /**
+     * This method saves new user to db and sends welcome mail to registered user
+     *
+     * @param createUserRequest request dto
+     * @return saved data
+     */
     public UserResponseDTO createUser(CreateUserRequest createUserRequest) {
         User entity = User.builder()
                 .name(createUserRequest.getName())
@@ -46,6 +52,13 @@ public class UserService implements UserDetailsService {
         return result;
     }
 
+    /**
+     * This method gets user data according to username
+     *
+     * @param username given username
+     * @return user data
+     * @throws UsernameNotFoundException if there is no data with given username, throws Exception
+     */
     @Override
     public UserDTO loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
@@ -54,6 +67,11 @@ public class UserService implements UserDetailsService {
         return modelMapper.map(user, UserDTO.class);
     }
 
+    /**
+     * This method gets all users from db
+     *
+     * @return user list
+     */
     public List<UserResponseDTO> getAllUsers() {
         return userRepository.findAll()
                 .stream()
@@ -61,12 +79,24 @@ public class UserService implements UserDetailsService {
                 .toList();
     }
 
+    /**
+     * This method gets user data according to id
+     *
+     * @param id user id
+     * @return user data
+     */
     public UserResponseDTO getUserById(Long id) {
         return userRepository.findById(id)
                 .map(entity -> modelMapper.map(entity, UserResponseDTO.class))
                 .orElseThrow(() -> new EntityNotFoundException("user"));
     }
 
+    /**
+     * This method updates user
+     *
+     * @param updateUserRequest request dto
+     * @return updated user
+     */
     public UserResponseDTO updateUser(UpdateUserRequest updateUserRequest) {
         User entity = userRepository.findById(updateUserRequest.getId())
                 .orElseThrow(() -> new EntityNotFoundException("user"));
@@ -80,10 +110,18 @@ public class UserService implements UserDetailsService {
         return modelMapper.map(userRepository.save(entity), UserResponseDTO.class);
     }
 
+    /**
+     * This method deletes user from db according to id
+     *
+     * @param id user id
+     */
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
 
+    /**
+     * This method deletes all users whose role is user
+     */
     public void deleteAllUsers() {
         userRepository.deleteAll(userRepository.findByAuthorities(Role.ROLE_USER));
     }

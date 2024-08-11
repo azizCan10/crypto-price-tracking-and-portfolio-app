@@ -22,6 +22,12 @@ public class JwtService {
     @Value("${expire-time}")
     private Long EXPIRE_TIME;
 
+    /**
+     * Generates jwt token using username
+     *
+     * @param username username of the logged user
+     * @return generated jwt token
+     */
     public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
 
@@ -34,6 +40,13 @@ public class JwtService {
                 .compact();
     }
 
+    /**
+     * Validates the token
+     *
+     * @param token       token of logged user
+     * @param userDetails logged user
+     * @return true or false
+     */
     public Boolean validateToken(String token, UserDetails userDetails) {
         String username = extractClaims(token).getSubject();
         Date expirationDate = extractClaims(token).getExpiration();
@@ -41,6 +54,12 @@ public class JwtService {
         return userDetails.getUsername().equals(username) && expirationDate.after(new Date());
     }
 
+    /**
+     * It returns claims of token
+     *
+     * @param token token of logged user
+     * @return Claims
+     */
     public Claims extractClaims(String token) {
         return Jwts
                 .parser()

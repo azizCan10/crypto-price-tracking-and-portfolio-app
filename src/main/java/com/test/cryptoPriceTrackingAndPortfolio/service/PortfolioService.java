@@ -24,6 +24,14 @@ public class PortfolioService {
     private final CryptoService cryptoService;
     private final ModelMapper modelMapper;
 
+    /**
+     * This method saves data to db according to logged user id and cryptocurrency.
+     * If there is existing data in the db for the given user id and cryptocurrency,
+     * it will perform checks according to the amount, price, and buy/sell operation.
+     *
+     * @param createPortfolioRequest request dto
+     * @return saved data
+     */
     public PortfolioDTO addOperation(CreatePortfolioRequest createPortfolioRequest) {
         createPortfolioRequest.setPortfolioCrypto(cryptoService.createOrGetCryptoIfExists(createPortfolioRequest.getPortfolioCrypto()));
         PortfolioDTO result = null;
@@ -54,8 +62,7 @@ public class PortfolioService {
 
                 entity.setTotal(entity.getTotal().subtract(createPortfolioRequest.getAmount().multiply(createPortfolioRequest.getPrice())));
                 entity.setPrice(entity.getTotal().divide(entity.getAmount(), 2, RoundingMode.HALF_UP));
-            }
-            else {
+            } else {
                 throw new EntityNotFoundException("crypto with symbol: " + createPortfolioRequest.getPortfolioCrypto().getSymbol());
             }
         }
@@ -66,6 +73,12 @@ public class PortfolioService {
         return result;
     }
 
+    /**
+     * This method deletes data from db according to logged user id and crypto id
+     *
+     * @param userId
+     * @param cryptoId
+     */
     @Transactional
     public void delete(Long userId, Long cryptoId) {
         Portfolio optionalEntity = portfolioRepository.findByUserAndCrypto(userId, cryptoId)
