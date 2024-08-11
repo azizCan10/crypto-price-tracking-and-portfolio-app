@@ -71,3 +71,5 @@ To build and run the project, follow these steps:
 -> The application will be available at http://localhost:8080
 
 -> Swagger will be available at http://localhost:8080/swagger-ui/index.html
+
+-> You can find collection file in collections folder
